@@ -1,0 +1,11 @@
+# Clippy linting configuration
+# Enforces good Rust practices
+
+# Set the minimum supported Rust version
+msrv = "1.75.0"
+
+# Allow certain lints that might be too strict for this project
+allow-unwrap-in-tests = true
+
+# Warn on TODOs in code
+warn-on-todos = true

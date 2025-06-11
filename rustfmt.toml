@@ -1,0 +1,27 @@
+# Rust formatting configuration
+# This ensures consistent code style across the project
+
+# Use verbose diffs
+verbose = true
+
+# Format string literals where necessary
+format_strings = false
+
+# Reorder imports and extern crates
+reorder_imports = true
+reorder_modules = true
+
+# Use field/variant initialization shorthand
+use_field_init_shorthand = true
+
+# Format code in doc comments
+format_code_in_doc_comments = true
+
+# Normalize comments
+normalize_comments = true
+
+# Format macro bodies
+format_macro_bodies = true
+
+# Edition 2021 formatting
+edition = "2021"

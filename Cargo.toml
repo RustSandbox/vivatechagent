@@ -1,0 +1,30 @@
+[package]
+name = "vivaagent"
+version = "0.1.0"
+edition = "2021"
+authors = ["Hamze Ghalebi <ghalebi@gmail.com>"]
+description = "AI-powered strategic planner for conference attendees"
+repository = "https://github.com/vivatech-community/vivaagent"
+license = "MIT"
+readme = "README.md"
+keywords = ["ai", "conference", "planning", "rust", "agent"]
+categories = ["web-programming", "command-line-utilities"]
+
+[dependencies]
+axum = "0.8"
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.12", features = ["json"] }
+rig-core = "0.13.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+shuttle-axum = "0.51.0"
+shuttle-runtime = "0.51.0"
+tokio = { version = "1", features = ["macros"] }
+tracing = "0.1"
+anyhow = "1.0"
+regex = "1.10"
+thiserror = "1.0"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockito = "1.0"

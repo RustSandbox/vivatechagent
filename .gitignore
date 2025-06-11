@@ -1,0 +1,51 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo.lock is included for reproducible builds
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+Secrets.toml
+secrets.toml
+*.secret
+*.key
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Test coverage
+tarpaulin-report.html
+cobertura.xml
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Shuttle specific
+.shuttle/
+shuttle.log
+
+# Personal and sensitive data
+personal/
+private/
+*.private.*
+
+# Documentation build artifacts
+/target/doc/
+/target/rdoc/
