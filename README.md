@@ -1,6 +1,6 @@
 # VivaTeach Planner 🦾📅
 
-👉 **Live demo:** <https://vivatech.remo-lab.com/>
+👉 **Live demo:** [https://vivatech.remo-lab.com/](https://vivatech.remo-lab.com/)
 
 📧 **Feedback?** Please share your thoughts at **vivatech@remolab.fr**
 
@@ -20,16 +20,16 @@
 
 ## 🛠️  Stack Behind the Scenes
 
-| Layer                 | Tech / Service | Why it was chosen |
-|-----------------------|----------------|-------------------|
-| **Runtime Intelligence** | OpenAI **GPT-4o** | Fast, reliable, and robust for real-time reasoning |
-| **Agentic Logic**     | [**Rig**](https://github.com/rigprompt/rig) | Lightweight, modular framework for orchestrating tool-calling LLM agents |
-| **Web / API**         | **Rust** + [**Axum**](https://github.com/tokio-rs/axum) | Performant, type-safe HTTP layer |
-| **Serverless Deploy** | [**Shuttle**](https://www.shuttle.rs/) | Zero-config, Rust-native deployments |
-| **Database**          | [**Neon**](https://neon.tech) (Postgres) | Serverless with branching for safe experimentation |
-| **Authentication**    | **Supabase** | Quick auth flows & session handling |
-| **Embeddings**        | `mxbai-embed-large-v1` via **Ollama** (local) → Hugging Face (cloud) | Cheap to build locally, scalable remotely |
-| **Debugging Copilot** | **Claude 4** | Sharp and contextual sanity checks |
+| Layer                          | Tech / Service                                                                | Why it was chosen                                                        |
+| ------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **Runtime Intelligence** | OpenAI **GPT-4o**                                                       | Fast, reliable, and robust for real-time reasoning                       |
+| **Agentic Logic**        | [**Rig**](https://github.com/0xPlaygrounds/rig)                            | Lightweight, modular framework for orchestrating tool-calling LLM agents |
+| **Web / API**            | **Rust** + [**Axum**](https://github.com/tokio-rs/axum)              | Performant, type-safe HTTP layer                                         |
+| **Serverless Deploy**    | [**Shuttle**](https://www.shuttle.rs/)                                     | Zero-config, Rust-native deployments                                     |
+| **Database**             | [**Neon**](https://neon.tech) (Postgres)                                   | Serverless with branching for safe experimentation                       |
+| **Authentication**       | **Supabase**                                                            | Quick auth flows & session handling                                      |
+| **Embeddings**           | `mxbai-embed-large-v1` via **Ollama** (local) → Hugging Face (cloud) | Cheap to build locally, scalable remotely                                |
+| **Debugging Copilot**    | **Claude 4**                                                            | Sharp and contextual sanity checks                                       |
 
 ---
 
@@ -41,11 +41,11 @@ flowchart TD
         A[POST /generate-plan] -->|objective JSON| B
     end
 
-    subgraph Backend (Axum + Rig)
+    subgraph "Backend [Axum + Rig]"
         B[generate_plan_handler]
-        B --> C[Rig Agent (GPT-4o)]
+        B --> C[Rig Agent GPT-4o]
         C --tool: query_vivatech_api--> D[External VivaTech RAG API]
-        C --(optional tool)--> E[assess_event_timeliness]
+        C --optional tool--> E[assess_event_timeliness]
         C --> F[Action Plan]
     end
 
@@ -82,8 +82,8 @@ vivaagent-opensource/
 ### 1 · Clone & enter
 
 ```bash
-git clone https://github.com/<you>/vivaagent-opensource.git
-cd vivaagent-opensource
+git clone https://github.com/RustSandbox/vivatechagent.git
+cd vivatechagent
 ```
 
 ### 2 · Configure secrets
@@ -147,12 +147,12 @@ cargo shuttle run        # spins up http://localhost:8000
 
 ### Env Vars Used
 
-| Variable               | Required | Purpose                           |
-|------------------------|----------|-----------------------------------|
-| `OPENAI_API_KEY`       | ✅       | Calls GPT-4o for planning logic    |
-| `VIVATECH_API_URL`     | ✅       | Endpoint for VivaTech RAG search  |
-| `API_TIMEOUT_SECONDS`  | ❌       | HTTP timeout for external calls   |
-| `CONFERENCE_DATE`      | ❌       | Override reference date for tools |
+| Variable                | Required | Purpose                           |
+| ----------------------- | -------- | --------------------------------- |
+| `OPENAI_API_KEY`      | ✅       | Calls GPT-4o for planning logic   |
+| `VIVATECH_API_URL`    | ✅       | Endpoint for VivaTech RAG search  |
+| `API_TIMEOUT_SECONDS` | ❌       | HTTP timeout for external calls   |
+| `CONFERENCE_DATE`     | ❌       | Override reference date for tools |
 
 ---
 
@@ -173,8 +173,6 @@ Shuttle automatically provisions a Postgres instance if you need one later. Add 
 
 ---
 
-## 🧭  Roadmap -> <!-- Roadmap section removed -->
-
 ## 📝 License
 
 MIT © 2025 — Happy hacking & see you at VivaTech!
@@ -185,10 +183,10 @@ MIT © 2025 — Happy hacking & see you at VivaTech!
 
 This repo focuses on the **planning micro-service**, but two other services complete the picture:
 
-| Service | Purpose | Env Var / URL |
-|---------|---------|---------------|
-| **VivaTech RAG Agent** | Exposes a `/query` endpoint that talks **directly to the Postgres + embeddings DB**. Our `query_vivatech_api` tool calls this private service to fetch relevant sessions & partner info. | `VIVATECH_API_URL` (e.g. `https://vivatechblablabla.shuttle.app/query`) (private) |
-| **Session Manager / Queue** | A minimal **private** front-end layer that handles **session token issuance**, **rate-limiting**, and a small in-memory **FIFO queue** so we don't overload GPT-4. Think "traffic cop" for end-users. | Live at <https://vivatech.remo-lab.com/> (private) |
+| Service                           | Purpose                                                                                                                                                                                                                      | Env Var / URL                                                                         |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **VivaTech RAG Agent**      | Exposes a `/query` endpoint that talks **directly to the Postgres + embeddings DB**. Our `query_vivatech_api` tool calls this private service to fetch relevant sessions & partner info.                           | `VIVATECH_API_URL` (e.g. `https://vivatechblablabla.shuttle.app/query`) (private) |
+| **Session Manager / Queue** | A minimal **private** front-end layer that handles **session token issuance**, **rate-limiting**, and a small in-memory **FIFO queue** so we don't overload GPT-4. Think "traffic cop" for end-users. | Live at [https://vivatech.remo-lab.com/](https://vivatech.remo-lab.com/) (private)        |
 
 > The front-end session manager is available publicly at **https://vivatech.remo-lab.com/**. It is intentionally kept thin—HTML + a sprinkle of JS—so it can be swapped or scaled independently (Cloudflare Workers, Vercel Edge, etc.). For now it simply meters requests and shows a "you're in line" screen if usage spikes.
 
