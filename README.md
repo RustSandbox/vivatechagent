@@ -44,8 +44,8 @@ flowchart TD
     subgraph "Backend [Axum + Rig]"
         B[generate_plan_handler]
         B --> C[Rig Agent GPT-4o]
-        C --tool: query_vivatech_api--> D[External VivaTech RAG API]
-        C --optional tool--> E[assess_event_timeliness]
+        C --|tool: query_vivatech_api|--> D[External VivaTech RAG API]
+        C --|optional tool|--> E[assess_event_timeliness]
         C --> F[Action Plan]
     end
 
